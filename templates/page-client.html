@@ -1,0 +1,37 @@
+﻿<body>
+	<script type="text/javascript">
+	var BaseUrl = "{gordon}/";
+	var flashvars = {
+		"client.starting" : "{full_name} is aan het laden",
+		"client.allow.cross.domain" : "0",
+		"client.notify.cross.domain" : "0",
+		"connection.info.host" : "{ip}",
+		"connection.info.port" : "{port}",
+		"site.url" : "{url}/",
+		"url.prefix" : "{url}",
+		"client.reload.url" : "{url}/client",
+		"client.fatal.error.url" : "{url}/client",
+		"client.connection.failed.url" : "{url}/client",
+		"external.variables.txt" : "{external_variables}",
+		"external.texts.txt" : "{external_flash_texts}",
+		"productdata.load.url" : "{productdata}",
+		"furnidata.load.url" : "{furnidata}",
+		"use.sso.ticket" : "1",
+		"sso.ticket" : "{auth_ticket}",
+		"processlog.enabled" : "0",
+		"flash.client.url" : "{gordon}/",
+		"flash.client.origin" : "popup"
+	};
+
+	var params = {
+		"base" : "{gordon}/",
+		"allowScriptAccess" : "always",
+		"menu" : "false"
+	};
+
+	swfobject.embedSWF("{gordon}/{habbo_swf}.swf", "client", "100%", "100%", "10.0.0", "{webbuild}/expressInstall.swf", flashvars, params, null);
+	</script>
+
+	<div id="client"></div></div>
+</body>
+</html>

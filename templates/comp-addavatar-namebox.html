@@ -1,0 +1,13 @@
+<div class="field field-habbo-name {is_error}">
+	<label for="habbo-name">Gebruikersnaam:</label>
+	<a href="#" class="new-button" id="check-name-btn"><b>Check</b><i></i></a>
+	<input type="text" id="habbo-name" size="32" value="{username}" name="bean.avatarName" class="text-field" maxlength="32"/>
+	<div id="name-suggestions">
+		{if {is_good}}
+		<div class="available">
+        	<p>De naam <strong>{username}</strong> is beschikbaar.</p>
+    	</div>
+		{endif}
+	</div>
+	<p class="help">Jouw naam mag kleine en grote letters, cijfers en de karakters _-=?!@:., bevatten.</p>
+</div>

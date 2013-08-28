@@ -1,0 +1,53 @@
+<body id="embedpage">
+<div id="overlay"></div>
+<div id="container">
+	<div id="select-avatar">
+	<div class="pick-avatar-container clearfix">
+		<div class="title">
+			<span class="habblet-close"></span>
+			<h1>Kies je {site_name}</h1>
+		</div>
+		
+		<div id="content">
+            <div id="user-info">
+			<img src="http://static.ak.fbcdn.net/pics/q_silhouette.gif"/>
+				<div>
+					<div id="name">{user_name}</div>
+					<a href="{url}/me" id="logout">Terug naar het hotel</a>
+					<a href="{url}/identity/settings" id="manage-account">E-mail Login beheren</a>
+				</div>
+			</div>
+            <div id="first-avatar">
+				{current_avatar}
+            </div>
+			{if {may_add}}
+				<div id="link-new-avatar"><a class="new-button" href="{url}/identity/add_avatar"><b>+ Toevoegen</b><i></i></a></div>
+            {endif}
+            <p style="margin: 5px 10px">Nog {togo} {site_name}'s over</p>
+			
+            <div class="other-avatars">
+			<ul>
+				{avatar_items}
+			</ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="pick-avatar-container-bottom"></div>
+</div> 
+<div id="footer"> 
+	<p class="footer-links">{footer_links}</p> 
+	<p class="copyright">{copyright}</p>
+</div>   
+<script type="text/javascript">
+	Embed.decorateFooterLinks();
+</script>
+</div>
+<script type="text/javascript"> 
+if (typeof HabboView != "undefined") {
+	HabboView.run();
+}
+</script>
+
+</body>
+</html>

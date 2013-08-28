@@ -1,0 +1,25 @@
+<div class="movable stickie n_skin_{skin}-c" style="left: {x}px; top: {y}px; z-index: {z};" id="stickie-{id}">
+	<div class="n_skin_{skin}">
+		<div class="stickie-header">
+			<h3>	
+				{if {edit_mode}}
+				<img src="{webbuild}/images/myhabbo/icon_edit.gif" width="19" height="18" class="edit-button" id="stickie-{id}-edit" />
+				<script type="text/javascript">
+				var editButtonCallback = function(e) { openEditMenu(e, {id}, "stickie", "stickie-{id}-edit"); };
+				Event.observe("stickie-{id}-edit", "click", editButtonCallback);
+				Event.observe("stickie-{id}-edit", "editButton:click", editButtonCallback); 
+				</script>
+				{endif}
+				<img id="stickie-{id}-report" class="report-button report-s" alt="report" src="{webbuild}/images/myhabbo/buttons/report_button.gif" style="display: {show_report}">
+			</h3>
+			<div class="clear"></div>
+		</div>
+		<div class="stickie-body">
+			<div class="stickie-content">
+                <div class="stickie-markup">{data}</div>
+				<div class="stickie-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

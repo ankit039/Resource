@@ -1,0 +1,102 @@
+<body id="client" class="background-accountdetails-male">
+<div id="overlay"></div>
+
+<div id="stepnumbers">
+    <div class="stepdone">Geboortedatum</div>
+    <div class="stepdone">Gegevens</div>
+    <div class="step3focus">Veiligheidscheck</div>
+    <div class="stephabbo"></div>
+</div>
+
+<div id="main-container">
+{if {if_no_error}}
+<div id="error-placeholder"></div>
+{endif}
+{if {if_error}}
+<div id="error-messages-container" class="cbb">
+	<div class="rounded" style="background-color: #cb2121;">
+		<div id="error-title" class="error">
+			{error_text}
+		</div>
+	</div>
+</div>
+{endif}
+
+<h2>Stap het Hotel binnen.</h2>
+
+
+    <div id="captcha-container">
+        <h3>Nog een klein veiligheidsdingetje voor we gaan..</h3>
+        <div id="captcha-image-container">
+			<div id="recaptcha_image" style="background-color: #FFFFFF;">
+				<center><img src='{url}/captcha/securimage_show.php'></center>
+			</div>
+        </div><br><br>
+        <div id="captcha-reload-container">
+			Snap je niks hiervan?
+			<a id="recaptcha-reload" href=''>Probeer een nieuwe code</a>
+        </div>
+    </div>
+
+    <div class="delimiter_smooth">
+        <div class="flat">&nbsp;</div>
+        <div class="arrow">&nbsp;</div>
+        <div class="flat">&nbsp;</div>
+    </div>
+
+    <div id="inner-container">
+        <form id="captcha-form" method="post" action="{url}/quickregister/captcha_submit" onsubmit="Overlay.show(null,'Laden...');">
+            <div id="recaptcha-input-title">Type de twee losse woorden:</div>
+            <div id="recaptcha-input">
+                <input type="text" tabindex="2" name="bean_captchaResponse" id="recaptcha_response_field">
+            </div>
+        </form>
+    </div>
+
+    <div id="select">
+        <a href="{url}/quickregister/back" id="back-link">Terug</a>
+        <div class="button">
+            <a id="proceed-button" href="#" class="area">Klaar!</a>
+            <span class="close"></span>
+        </div>
+   </div>
+
+    <script type="text/javascript">
+
+        document.observe("dom:loaded", function() {
+            if ($("more-avatars")) {
+                Event.observe($("more-avatars"), "click", function(e) {
+                    Event.stop(e);
+                    new Ajax.Updater("avatars", "/quickregister/refresh_avatars", {
+                        onComplete: function (t) {
+                            QuickRegister.initAvatarChooser();
+                        }
+                    });
+                });
+            }
+
+            if($("proceed-button")) {
+                $("proceed-button").observe("click", function(e) {
+                    Event.stop(e);
+                    Overlay.show(null,'Laden...');
+                    $("captcha-form").submit();
+                });
+
+                Event.observe($("back-link"), "click", function() {
+                    Overlay.show(null,'Laden...');
+                });
+            }
+
+            $("recaptcha_response_field").focus();
+
+            QuickRegister.initAvatarChooser();
+        });
+    </script>
+
+</div>
+<script type="text/javascript">
+HabboView.run();
+</script>
+
+</body>
+</html>

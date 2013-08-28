@@ -1,0 +1,29 @@
+<div id="wide-personal-info">
+	<div id="habbo-plate">
+		<a href="{url}/identity/avatars">
+			<img src="{url}/habbo-imaging/avatarimage?figure={look}&direction=3&head_direction=3&crr=0&gesture=sml"/>
+		</a>
+	</div>
+
+	<div id="name-box" class="info-box">
+		<div class="label">{language_me_userinfo_username}:</div>
+		<div class="content">{user_name}</div>
+	</div>
+	
+	<div id="motto-box" class="info-box">
+		<div class="label">{language_me_userinfo_motto}:</div>
+		<div class="content">{motto}</div>
+	</div>
+	
+	<div id="last-logged-in-box" class="info-box">
+		<div class="label">{language_me_userinfo_last_online}:</div>
+		<div class="content">{last_login}</div>
+	</div>
+
+	<div class="enter-hotel-btn">
+		<div class="open enter-btn">
+			<a href="{url}/client" target="Client" onclick="HabboClient.openOrFocus(this); return false;">{language_me_userinfo_enter_client}<i></i></a>
+			<b></b>
+		</div>
+	</div>
+</div>

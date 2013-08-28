@@ -1,0 +1,64 @@
+<div class="movable widget ProfileWidget" id="widget-{id}" style=" left: {x}px; top: {y}px; z-index: {z};">
+<div class="w_skin_{skin}">
+    <div class="widget-corner" id="widget-{id}-handle">
+        <div class="widget-headline"><h3>
+{if {edit_mode}}
+<img src="{webbuild}/images/myhabbo/icon_edit.gif" width="19" height="18" class="edit-button" id="widget-{id}-edit" />
+<script type="text/javascript">
+var editButtonCallback = function(e) { openEditMenu(e, {id}, "widget", "widget-{id}-edit"); };
+Event.observe("widget-{id}-edit", "click", editButtonCallback);
+Event.observe("widget-{id}-edit", "editButton:click", editButtonCallback); 
+</script>
+{endif}
+        <span class="header-left">&nbsp;</span><span class="header-middle">MIJN HOME</span><span class="header-right">&nbsp;</span></h3>
+        </div>  
+    </div>
+    <div class="widget-body">
+        <div class="widget-content">
+    <div class="profile-info">
+        <div class="name" style="float: left">
+        <span class="name-text">{username}</span>
+        </div>
+
+        <br class="clear" />
+
+            <img alt="offline" src="{webbuild}/images/myhabbo/profile/habbo_{online}.gif" />
+        <div class="birthday text">
+            {site_name} sinds:
+        </div>
+        <div class="birthday date">
+            {date}
+        </div>
+        <div>
+            
+            
+        </div>
+    </div>
+    <div class="profile-figure">
+            <img alt="{username}" src="{url}/habbo-imaging/avatarimage?figure={look}&direction=4&head_direction=4" />
+    </div>
+	
+	{if {has_friend}}
+	<div class="profile-friend-request clearfix">
+		<a class="new-button" id="add-friend" style="float: left"><b>Add as Friend</b><i></i></a>
+	</div>
+	{endif}
+	
+    <br clear="all" style="display: block; height: 1px"/>
+
+    <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+            new ProfileWidget('{userid}', '{user_id}', {
+                headerText: "Are you sure?",
+                messageText: "Are you sure you want to ask <strong\>{username}</strong\> to be your friend? Think twice before you hit OK!",
+                loginText: "You must sign in before sending a friend request.",
+                buttonText: "OK",
+                cancelButtonText: "Cancel"
+            });
+        });
+    </script>
+        <div class="clear"></div>
+        </div>
+    </div>
+</div>
+</div>

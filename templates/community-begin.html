@@ -1,0 +1,61 @@
+<body id="{body_id}" style="margin: 0px;">
+<div id="overlay"></div>
+<div id="header-container">
+{if {maintenance}}
+<div style="position:relative;background-color:#CC0000;border-bottom: 2px solid #A80000;width: 100%;height: 45px;line-height: 45px;color: #FFFFFF;font-weight: bold;">
+{language_default_site_maintenance}
+</div>
+{endif}
+<div id="header" class="clearfix">
+<h1><a href="{url}"></a></h1>
+
+<div id="subnavi" class="wide">
+	<div id="subnavi-search">
+		<div id="subnavi-search-upper">
+		<ul id="subnavi-search-links">
+			<li><a href="/feedback" target="_blank">{language_default_submit_idea}</a></li>
+			<li><a href="https://help.habbo.nl/home" target="habbohelp" >{language_default_helptool}</a></li>
+            <li>
+			<form action="{url}/account/logout?token={user_token}" method="post">
+				<button type="submit" id="signout" class="link"><span>{language_default_logout}</span></button>
+			</form>
+            </li>
+        </ul>
+        </div>
+    </div>
+
+	<div id="to-hotel">
+		<a href="{url}/client" class="new-button green-button" target="client" onclick="HabboClient.openOrFocus(this); return false;"><b>{language_default_enter_client}</b><i></i></a>
+	</div>
+</div>
+
+<script type="text/javascript">
+L10N.put("purchase.group.title", "Create a Group");
+document.observe("dom:loaded", function() {
+	$("signout").observe("click", function() {
+		HabboClient.close();
+	});
+});
+</script>
+<ul id="navi">
+{main-menu}
+</ul>
+
+<div id="habbos-online">
+	<div class="rounded"><span><b>{users_online}</b> {language_default_users_online}</span></div>
+</div>
+</div>
+</div>
+
+<div id="content-container">
+
+<div id="navi2-container" class="pngbg">
+	<div id="navi2" class="pngbg clearfix">
+		<ul>
+		{sub-menu}
+		</ul>
+	</div>
+</div>
+
+<div id="container">
+<div id="content" style="position: relative" class="clearfix">

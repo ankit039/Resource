@@ -1,0 +1,84 @@
+<body id="embedpage">
+<div id="overlay"></div>
+
+<div id="container">
+    <div class="settings-container clearfix">
+        <h1>E-mail Login beheren</h1>
+		
+        <div id="back-link">
+		<a href="{url}/me"><img src="{webbuild}/v2/images/hotel.png" id="back-to-main"></a>
+		<a href="{url}/identity/avatars">Mijn {site_name}namen</a> &raquo; E-mail Login beheren
+        </div>
+        <div style="padding: 0 10px">
+
+        <h3>Email:</h3>
+		{if {email_changed}}
+		<p class="confirmation">Je hebt succesvol je mailadres veranderd</p>
+		{endif}
+        <div class="opt-email">
+        <span>{email}</span>
+        <a id="manage-email" class="new-button" href="{url}/identity/email"><b>E-mailadres aanpassen</b><i></i></a>
+        </div>
+        <br clear="all"/>
+
+        <h3>Inlogmethodes:</h3>
+		<p>Hier vind je een overzicht van methodes die jij gebruikt om in te loggen.</p>
+        <div class="opt-auth-providers clearfix settings-auth" style="float: none; width: auto">        
+			<p>
+				<img src="{webbuild}/v2/images/rpx/icon_habbo_big.png" style="vertical-align: middle" title="habbo"/>
+				{email}
+				<span class="last-access-time" isotime="{last_alive}" title="{last_alive}">
+					Laatst gebruikt: {last_alive}
+				</span>
+			</p>
+        </div>
+        
+		{if {support_auth}}
+		<a id="manage-auth-providers" class="new-button" href="{url}/identity/auth"><b>Manage signing in options</b><i></i></a>
+		{endif}
+		<br clear="all"/>
+        
+		<h3>Wachtwoord:</h3>
+        {if {pw_changed}}
+		<p class="confirmation">Je hebt succesvol je wachtwoord veranderd</p>
+		{endif}
+        <div class="opt-password">
+            <span>**************</span>
+            <a id="manage-password" class="new-button" href="{url}/identity/password"><b>Verander</b><i></i></a>
+        </div>
+
+        </div>
+    </div>
+    <div class="settings-container-bottom">
+	</div>
+    <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+            $(document.body).addClassName("js");
+        });
+
+        if (window.opener && window.opener.Avatars) {
+            $("back-link").down("a").update("Close settings window");
+            if (!!$("manage-password")) {
+                $("manage-password").href = $("manage-password").href + "?fromClient=true";
+            }
+            Event.observe($("back-link"), "click", function(e) {
+                Event.stop(e);
+                window.opener.focus();
+                window.close();
+            });
+        }
+    </script>
+<div id="footer">
+    <p class="footer-links">{footer_links}</p>
+    <p class="copyright">{copyright}</p>
+</div>    <script type="text/javascript">
+        Embed.decorateFooterLinks();
+    </script>
+</div>
+<script type="text/javascript">
+if (typeof HabboView != "undefined") {
+    HabboView.run();
+}
+</script>
+</body>
+</html>

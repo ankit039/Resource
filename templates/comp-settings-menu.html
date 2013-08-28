@@ -1,0 +1,31 @@
+<div class="habblet-container" style="float:left; width:210px;"> 
+<div class="cbb settings"> 
+	<h2 class="title">Account Opties</h2> 
+	<div class="box-content"> 
+		<div id="settingsNavigation"> 
+			<ul>
+			<li {sel_preferences}><a href="{url}/profile?tab=1">Mijn voorkeuren</a></li>
+			<li {sel_mail}><a href="{url}/profile?tab=2">E-mail veranderen/bevestigen</a></li> 
+			<li {sel_password}><a href="{url}/profile?tab=3">Mijn wachtwoord</a></li>
+			<!--<li {sel_friendlist}><a href="{url}/profile?tab=4">Mijn vriendenlijst</a></li>-->
+			<li><a href="{url}/identity/settings">E-mail Login beheren</a></li>
+			</ul>
+		</div> 
+	</div>
+</div> 
+{if {no_club}}
+<div class="cbb settings">
+	<h2 class="title">{site_name} VIP-Club</h2> 
+	<div class="box-content"> 
+		<div class="habboclub-banner-container habboclub-clothes-banner">
+			<p><img src="{url}/images/VIP-info.gif"></p>
+		</div>
+		<p class="habboclub-header">
+			{site_name} VIP is onze exclusieve ledenclub: alleen voor {site_name}'s, niet voor pixeltuig. 
+			Leden genieten een groot aantal voordelen, zoals extra kleding, catalogus en meer ruimte voor vrienden.
+		</p>
+		<center><a href="{url}/credits/habboclub">Lees meer &gt;&gt;</a></center>
+      </div> 
+</div>
+{endif}
+</div>

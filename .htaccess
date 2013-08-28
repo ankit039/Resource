@@ -1,0 +1,69 @@
+##Options +FollowSymlinks
+##Options -Indexes
+
+<Files .htaccess>
+deny from all
+</Files>
+
+<ifModule mod_php5.c>
+php_value zlib.output_compression 16386
+php_value register_globals off
+php_value session.use_trans_sid 0
+</ifModule>
+
+<ifModule mod_rewrite.c>
+RewriteEngine On
+#RewriteRule ^(.*)\.html $1\.php 
+
+RewriteRule ^page/404(|/)$ ./error.php
+
+RewriteRule ^account/submit(|/)$ ./index.php
+RewriteRule ^account/logout(|/)$ ./logout.php
+RewriteRule ^account/logout_ok(|/)$ ./logout.php?ok
+RewriteRule ^account/password/resetIdentity/([^/]+)(|/)$ ./account.php?id=$1
+
+RewriteRule ^home/([^/]+)(|/)$ ./homes.php?id=$1&type=home
+RewriteRule ^myhabbo/([^/]+)(|/)$ ./homesRequest.php?type=$1
+RewriteRule ^myhabbo/([^/]+)/([^/]+)(|/)$ ./homesRequest.php?type=$1&id=$2
+RewriteRule ^pingsession(|/)$ ./homesRequest.php?type=pingsession
+RewriteRule ^discussions/actions/pingsession(|/)$ ./homesRequest.php?type=pingsession
+
+RewriteRule ^quickregister/start(|/)$ ./register.php?move=1
+RewriteRule ^quickregister/age_gate_submit(|/)$ ./register.php?move=1
+RewriteRule ^quickregister/age_gate/e/([^/]+)(|/)$ ./register.php?move=1&error=true
+RewriteRule ^quickregister/email_password(|/)$ ./register.php?move=2
+RewriteRule ^quickregister/email_password_submit(|/)$ ./register.php?move=2
+RewriteRule ^quickregister/email_password/e/([^/]+)(|/)$ ./register.php?move=2&error=true
+RewriteRule ^quickregister/captcha(|/)$ ./register.php?move=3
+RewriteRule ^quickregister/captcha_submit(|/)$ ./register.php?move=3
+RewriteRule ^quickregister/captcha/e/([^/]+)(|/)$ ./register.php?move=3&error=true
+RewriteRule ^quickregister/back(|/)$ ./register.php?move=4
+RewriteRule ^quickregister/backToAccountDetails(|/)$ ./register.php?move=5
+
+RewriteRule ^papers/termsAndConditions(|/)$ ./papers.php?id=1
+RewriteRule ^papers/privacy(|/)$ ./papers.php?id=2
+RewriteRule ^identity/avatars(|/)$ ./avatarselect.php
+RewriteRule ^identity/useOrCreateAvatar/([^/]+)(|/)$ ./avatarselect.php?selectAvatar=$1
+RewriteRule ^identity/add_avatar(|/)$ ./addavatar.php
+RewriteRule ^identity/add_avatar_messages(|/)$ ./addavatar.php?avatarMessage=1
+RewriteRule ^identity/([^/]+)(|/)$ ./identity.php?key=$1
+
+RewriteRule ^me(|/)$ ./me.php
+RewriteRule ^client(|/)$ ./client.php
+RewriteRule ^profile(|/)$ ./settings.php
+RewriteRule ^profile/([^/]+)(|/)$ ./settings.php
+RewriteRule ^community(|/)$ ./community.php
+RewriteRule ^community/staff(|/)$ ./staff.php
+RewriteRule ^community/statistieken(|/)$ ./statistieken.php
+RewriteRule ^articles(|/)$ ./news.php
+RewriteRule ^articles/([^/]+)(|/)$ ./news.php?id=$1
+RewriteRule ^maintenance(|/)$ ./maintenance.php
+RewriteRule ^belcredits(|/)$ ./belcredits.php
+
+RewriteRule ^habbo-imaging/avatarimage(|/)$ ./habbo-imaging/avatarimage.php
+RewriteRule ^habbo-imaging/badge/([^/]+) ./habbo-imaging/badge.php?badge=$1
+RewriteRule ^habbo-imaging/head/([^/]+) ./habbo-imaging/head.php?figure=$1
+</ifModule>
+
+ErrorDocument 404 /resource/error.html
+ErrorDocument 403 /resource/error.html

@@ -1,0 +1,91 @@
+<body id="client" class="background-accountdetails-male">
+<div id="overlay"></div>
+
+<div id="stepnumbers">
+    <div class="stepdone">Geboortedatum</div>
+    <div class="step2focus">Gegevens</div>
+    <div class="step3">Veiligheidscheck</div>
+    <div class="stephabbo"></div>
+</div>
+
+<div id="main-container">
+{if {if_no_error}}
+<div id="error-placeholder"></div>
+{endif}
+{if {if_error}}
+<div id="error-messages-container" class="cbb">
+	<div class="rounded" style="background-color: #cb2121;">
+		<div id="error-title" class="error">
+			{error_text}
+		</div>
+	</div>
+</div>
+{endif}
+
+<form method="post" action="{url}/quickregister/email_password_submit" id="quickregister-form">
+	<h2>Jouw Habflygegevens</h2>
+
+		<div id="inner-container">
+		<div class="inner-content bottom-border">
+			<div class="field">
+                <label for="username">Gebruikersnaam</label>
+                <input type="text" id="username" name="bean_name" value="" />
+            </div>
+			<div class="help">Jouw <b>unieke naam</b> in Habfly Hotel.</div>
+            <div class="field">
+                <label for="email-address">E-mail</label>
+                <input type="text" id="email-address" name="bean_email" value="" />
+            </div>
+            <div class="help">Je hebt dit <b>e-mailadres</b> later weer nodig om </b>in te loggen</b>. Gebruik dus een echt adres.</div>
+            <div class="field">
+                <label for="email-address2">Vul nogmaals je e-mail in</label>
+                <input type="text" id="email-address2" name="bean_retypedEmail" value="" />
+            </div>
+            <div class="help">...voor de zekerheid.</div>
+
+            <div id="password-field" class="field">
+                <label for="register-password">Nieuw wachtwoord</label>
+                <input type="password" name="bean_password" id="register-password" maxlength="32" value="" />
+            </div>
+            <div class="help">Je wachtwoord moet meer dan <b>6 tekens</b> lang zijn en <b>letters en cijfers</b> bevatten.</div>
+        </div>
+
+        <div class="inner-content top-margin">
+			<div class="field-content checkbox">
+			  <label>
+			    <input type="checkbox" name="bean_termsOfServiceSelection" id="terms" value="true" class="checkbox-field"/>
+			    Ik begrijp en ga akkoord met de <a href="#" target="_blank" onclick="window.open('#'); return false;">Algemene voorwaarden</a>
+			  </label>
+			</div>		
+        </div>
+      </div>
+    </form>
+
+    <div id="select">
+        <div class="button">
+            <a id="proceed-button" href="#" class="area">Verder</a>
+            <span class="close"></span>
+        </div>
+        <a href="{url}/quickregister/back" id="back-link">Terug</a>
+   </div>
+</div>
+
+<script type="text/javascript">
+    document.observe("dom:loaded", function() {
+        Event.observe($("back-link"), "click", function() {
+            Overlay.show(null,'Laden...');
+        });
+        Event.observe($("proceed-button"), "click", function() {
+            Overlay.show(null,'Laden...');            
+            $("quickregister-form").submit();
+        });
+            $("username").focus();
+    });
+</script>
+
+<script type="text/javascript">
+HabboView.run();
+</script>
+
+</body>
+</html>

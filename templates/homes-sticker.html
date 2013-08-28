@@ -1,0 +1,10 @@
+<div class="movable sticker s_{data}" style="left: {x}px; top: {y}px; z-index: {z}" id="sticker-{id}">
+{if {edit_mode}}
+<img src="{webbuild}/images/myhabbo/icon_edit.gif" width="19" height="18" class="edit-button" id="sticker-{id}-edit" />
+<script type="text/javascript">
+var editButtonCallback = function(e) { openEditMenu(e, {id}, "sticker", "sticker-{id}-edit"); };
+Event.observe("sticker-{id}-edit", "click", editButtonCallback);
+Event.observe("sticker-{id}-edit", "editButton:click", editButtonCallback); 
+</script>
+{endif}
+</div>

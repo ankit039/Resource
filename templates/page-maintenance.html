@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+	<title>{site_title}</title> 
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
+	<script type="text/javascript" src="{webbuild}/static/js/jquery.tweet.js"></script> 
+	
+	<link href="{webbuild}/static/styles/maintenance.css" rel="stylesheet" type="text/css" />
+	<meta http-equiv="refresh" content="60; url={url}/">
+</head>
+<body>
+
+<div id="container"> 
+	<div id="content"> 
+		<div id="header" class="clearfix"> 
+			<h1><span></span></h1> 
+		</div> 
+		<div id="process-content">
+ 
+<div class="fireman"> 
+<h1>{site_name} in onderhoud!</h1> 
+ 
+<p> 
+Helaas is {site_name} op dit moment niet toegankelijk.<br><br> 
+Probeer het later nog eens, want we zullen snel weer terug zijn!
+<p> 
+ 
+</div> 
+ 
+<div class="tweet-container"> 
+<h2>Wat is er aan de hand?</h2> 
+ 
+<div class="tweet"></div>
+</div>
+ 
+<div id="footer"> 
+<p class="copyright">{copyright}</p> 
+</div> 
+
+</div> 
+</div> 
+</div> 
+ 
+<script type='text/javascript'>
+$(document).ready(function(){
+  $(".tweet").tweet({
+    username: "{twitter_username}",
+    count: 5
+  });
+});
+</script> 
+ 
+</body> 
+</html> 

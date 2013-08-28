@@ -1,0 +1,162 @@
+<body id="embedpage">
+<div id="overlay"></div>
+<div id="container">
+    <script type="text/javascript">
+    document.observe("dom:loaded", function() {
+        $(document.body).addClassName("js");
+        $("habbo-name").focus();
+        var checkHandler = function(e) {
+            Event.stop(e);
+            new Ajax.Updater("name-field-container", "{url}/identity/add_avatar", {
+                parameters: { checkNameOnly: "true", "bean.avatarName": $F("habbo-name")},
+                onComplete: function() {
+                    if ($("name-field-container").select(".state-error").length != 0) {
+                        $("habbo-name").focus();
+                    }
+                    new Ajax.Updater("error-messages-container", "{url}/identity/add_avatar_messages");
+                }
+            });
+        };
+        Event.observe($("name-field-container"), "click", Event.delegate({
+            '#check-name-btn > *' : checkHandler,
+            '#check-name-btn' : checkHandler,
+            '#name-suggestion-list a' : function(e) {
+                Event.stop(e);
+                new Ajax.Updater("name-field-container", "{url}/identity/add_avatar", {
+                    parameters: { checkNameOnly: "true", "bean.avatarName": Event.element(e).innerHTML },
+                    onComplete: function() {
+                        if ($("name-field-container").select(".state-error").length != 0) {
+                            $("habbo-name").focus();
+                        }
+                        new Ajax.Updater("error-messages-container", "{url}/identity/add_avatar_messages");
+                    }
+                });
+            }
+        }));
+
+        if ($("avatar-field-container")) {
+            var avatarClickHandler = function(gender) {
+                return function(e) {
+                    Event.stop(e);
+                    new Ajax.Updater("selected-avatar", "{url}/identity/add_avatar", {
+                        parameters: { checkFigureOnly: "true", "bean.gender": gender, "bean.figure": $(Event.element(e)).up("a").readAttribute("rel") }
+                    });
+                }
+            };
+            Event.observe($("avatar-field-container"), "click", Event.delegate({
+                'a.female-avatar img' : avatarClickHandler('f'),
+                'a.male-avatar img'   : avatarClickHandler('m'),
+                '#more-avatars'       : function(e) {
+                        Event.stop(e);
+                        new Ajax.Updater("avatar-field-container", "{url}/identity/add_avatar", {
+                            parameters: { refreshAvailableFigures: "true" }
+                        });
+                    }
+                }
+            ));
+        }
+
+        if ($("done-btn")) {
+            var submitButton = $("done-btn");
+            Event.observe(submitButton, "click", function(e) {
+                Event.stop(e);
+                if (!submitButton.hasClassName("__submitting__")) {
+                    submitButton.addClassName("__submitting__");
+                    submitButton.up("form").submit();
+                }
+            });
+        }
+
+        if ($("popup-link")) {
+            Event.observe($("popup-link"), "click", function(e) {
+                Event.stop(e);
+                window.open($("popup-link").href, null, "toolbar=no,location=yes,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=540,height=500");
+            });
+        }
+
+    });
+  </script>
+
+  <div id="add-avatar">
+    <div class="add-avatar-container clearfix">
+        <div class="title">
+          <span class="habblet-close"></span>
+          <h1>Voeg een nieuwe {site_name} toe</h1>
+        </div>
+        <div id="content">
+            <a id="back-link" href="{url}/identity/avatars">&laquo; Terug</a>
+            <form id="add-avatar-form" method="post">
+            <input type="hidden" name="__app_key" value="{api_number}" />
+
+            <div id="error-messages-container" style="margin-top: 10px">
+            	{errorbox}
+            </div>
+
+            <div id="name-field-container">
+                {namebox}
+            </div>
+            <div id="avatar-field-container" class="clearfix">
+                <div id="selected-avatar">
+                    <h3>Preview</h3>
+                        <img src="http://www.habbo.com/habbo-imaging/avatar/hr-155-42.hd-180-7.ch-225-90.lg-285-64.sh-300-64.fa-1201.wa-2009-90.cc-260-62,s-0.g-1.d-4.h-4.a-0,4965662440b34794119d6195c568581c.gif" width="64" height="110"/>
+                </div>
+                <div id="avatar-choices">
+                    <h3>Girls</h3>
+                        <a href="{url}/identity/add_avatar?bean.figure=hr-545-36.hd-600-1.ch-640-69.lg-715-64.sh-907-64.he-1608.ca-1805-64&amp;bean.gender=f&amp;checkFigureOnly=true" class="female-avatar" rel="hr-545-36.hd-600-1.ch-640-69.lg-715-64.sh-907-64.he-1608.ca-1805-64">
+                            <img src="http://www.habbo.com/habbo-imaging/avatar/hr-545-36.hd-600-1.ch-640-69.lg-715-64.sh-907-64.he-1608.ca-1805-64,s-1.g-1.d-4.h-4.a-0,7dcd2d7b18b0ae2a35f4053169afca14.gif" width="33" height="56"/>
+                        </a>
+                        <a href="{url}/identity/add_avatar?bean.figure=hr-890-36.hd-600-9.ch-685-62.lg-715-62.he-1602-62.wa-2011&amp;bean.gender=f&amp;checkFigureOnly=true" class="female-avatar" rel="hr-890-36.hd-600-9.ch-685-62.lg-715-62.he-1602-62.wa-2011">
+                            <img src="http://www.habbo.com/habbo-imaging/avatar/hr-890-36.hd-600-9.ch-685-62.lg-715-62.he-1602-62.wa-2011,s-1.g-1.d-4.h-4.a-0,0c674179f5f6ea1bf85ac2f1d20c8b2f.gif" width="33" height="56"/>
+                        </a>
+                        <a href="{url}/identity/add_avatar?bean.figure=hr-890-36.hd-629-8.ch-884-1315.lg-716-1315-62.sh-730-1315.he-1602-1315&amp;bean.gender=f&amp;checkFigureOnly=true" class="female-avatar" rel="hr-890-36.hd-629-8.ch-884-1315.lg-716-1315-62.sh-730-1315.he-1602-1315">
+                            <img src="http://www.habbo.com/habbo-imaging/avatar/hr-890-36.hd-629-8.ch-884-1315.lg-716-1315-62.sh-730-1315.he-1602-1315,s-1.g-1.d-4.h-4.a-0,aef1b78d01c3d8e0511aa6349171d871.gif" width="33" height="56"/>
+                        </a>
+                        <a href="{url}/identity/add_avatar?bean.figure=hr-890-39.hd-629-2.ch-670-62.lg-715-64.sh-907-64.he-1602-64&amp;bean.gender=f&amp;checkFigureOnly=true" class="female-avatar" rel="hr-890-39.hd-629-2.ch-670-62.lg-715-64.sh-907-64.he-1602-64">
+                            <img src="http://www.habbo.com/habbo-imaging/avatar/hr-890-39.hd-629-2.ch-670-62.lg-715-64.sh-907-64.he-1602-64,s-1.g-1.d-4.h-4.a-0,a0e4afc5b856d7c083046a7565fba5aa.gif" width="33" height="56"/>
+                        </a>
+                        <a href="{url}/identity/add_avatar?bean.figure=hr-515-35.hd-600-8.ch-660-65.lg-700-62.he-1606-65&amp;bean.gender=f&amp;checkFigureOnly=true" class="female-avatar" rel="hr-515-35.hd-600-8.ch-660-65.lg-700-62.he-1606-65">
+                            <img src="http://www.habbo.com/habbo-imaging/avatar/hr-515-35.hd-600-8.ch-660-65.lg-700-62.he-1606-65,s-1.g-1.d-4.h-4.a-0,ee79cf521478ea1c8ed45f56c370cd22.gif" width="33" height="56"/>
+                        </a>
+
+                    <h3>Male</h3>
+                        <a href="{url}/identity/add_avatar?bean.figure=hr-676-36.hd-208-7.ch-235-82.lg-281-64.sh-908-64.he-1608.ea-1401-64.fa-1201.ca-1804-62.wa-2002&amp;bean.gender=m&amp;checkFigureOnly=true" class="male-avatar" rel="hr-676-36.hd-208-7.ch-235-82.lg-281-64.sh-908-64.he-1608.ea-1401-64.fa-1201.ca-1804-62.wa-2002">
+                            <img src="http://www.habbo.com/habbo-imaging/avatar/hr-676-36.hd-208-7.ch-235-82.lg-281-64.sh-908-64.he-1608.ea-1401-64.fa-1201.ca-1804-62.wa-2002,s-1.g-1.d-4.h-4.a-0,0df34c792c1c4d92f5d0c09527280898.gif" width="33" height="56"/>
+                        </a>
+                        <a href="{url}/identity/add_avatar?bean.figure=hr-679-47.hd-180-1.ch-225-62.lg-270-66.sh-305-66.ha-1003-66.ea-1404-62.wa-2001.cc-260-66.cp-3120-83&amp;bean.gender=m&amp;checkFigureOnly=true" class="male-avatar" rel="hr-679-47.hd-180-1.ch-225-62.lg-270-66.sh-305-66.ha-1003-66.ea-1404-62.wa-2001.cc-260-66.cp-3120-83">
+                            <img src="http://www.habbo.com/habbo-imaging/avatar/hr-679-47.hd-180-1.ch-225-62.lg-270-66.sh-305-66.ha-1003-66.ea-1404-62.wa-2001.cc-260-66.cp-3120-83,s-1.g-1.d-4.h-4.a-0,39448f034b72598eb33a56d8c2e93085.gif" width="33" height="56"/>
+                        </a>
+                        <a href="{url}/identity/add_avatar?bean.figure=hr-135-45.hd-205-4.ch-240-78.lg-280-64.sh-3115-64-64.ha-1003-78.ea-1404-64.fa-1201.ca-1802.cp-3122-64&amp;bean.gender=m&amp;checkFigureOnly=true" class="male-avatar" rel="hr-135-45.hd-205-4.ch-240-78.lg-280-64.sh-3115-64-64.ha-1003-78.ea-1404-64.fa-1201.ca-1802.cp-3122-64">
+                            <img src="http://www.habbo.com/habbo-imaging/avatar/hr-135-45.hd-205-4.ch-240-78.lg-280-64.sh-3115-64-64.ha-1003-78.ea-1404-64.fa-1201.ca-1802.cp-3122-64,s-1.g-1.d-4.h-4.a-0,4be3349e19fa7db12bd960c5592fc7f4.gif" width="33" height="56"/>
+                        </a>
+                        <a href="{url}/identity/add_avatar?bean.figure=hr-893-36.hd-180-2.ch-215-78.lg-285-78.sh-3115-73-66.wa-2008.cc-260-78&amp;bean.gender=m&amp;checkFigureOnly=true" class="male-avatar" rel="hr-893-36.hd-180-2.ch-215-78.lg-285-78.sh-3115-73-66.wa-2008.cc-260-78">
+                            <img src="http://www.habbo.com/habbo-imaging/avatar/hr-893-36.hd-180-2.ch-215-78.lg-285-78.sh-3115-73-66.wa-2008.cc-260-78,s-1.g-1.d-4.h-4.a-0,efc46def018bd5c9003fb2cb33997ee3.gif" width="33" height="56"/>
+                        </a>
+                        <a href="{url}/identity/add_avatar?bean.figure=hr-115-42.hd-180-7.ch-876-64-62.lg-285-64.sh-3115-64-62.ea-1404-62&amp;bean.gender=m&amp;checkFigureOnly=true" class="male-avatar" rel="hr-115-42.hd-180-7.ch-876-64-62.lg-285-64.sh-3115-64-62.ea-1404-62">
+                            <img src="http://www.habbo.com/habbo-imaging/avatar/hr-115-42.hd-180-7.ch-876-64-62.lg-285-64.sh-3115-64-62.ea-1404-62,s-1.g-1.d-4.h-4.a-0,25eb3a06bdebc57bb2d56f8114e45c19.gif" width="33" height="56"/>
+                        </a>
+                    <p style="clear: left;"></p>
+                </div>
+            </div>
+            <br clear="all"/>
+            <a href="#" class="new-button green-button" id="done-btn"><b>Maak een {site_name}</b><i></i></a>
+            <input type="submit" id="done" value="Create character"/>
+        </form>
+        </div>
+    </div>
+    <div class="add-avatar-container-bottom"></div>
+  </div>
+<div id="footer">
+    <p class="footer-links">{footer_links}</p>
+    <p class="copyright">{copyright}</p>
+</div>    <script type="text/javascript">
+        Embed.decorateFooterLinks();
+    </script>
+</div>
+<script type="text/javascript">
+if (typeof HabboView != "undefined") {
+    HabboView.run();
+}
+</script>
+
+</body>
+</html>

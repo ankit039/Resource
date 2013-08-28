@@ -1,0 +1,57 @@
+<div class="habblet-container " style="float:left; width: 560px;">
+        <div class="cbb clearfix settings">
+
+            <h2 class="title">Mijn voorkeuren</h2>
+            <div class="box-content">
+          
+    {if {is_message}}  
+	<div class="rounded rounded-{message_type}">
+        {message}<br />
+    </div>
+    <div>&nbsp;</div>
+    {endif}
+
+<form action="{url}/profile/profileupdate" method="post" id="profileForm">
+<input type="hidden" name="tab" value="1" />
+<input type="hidden" name="__app_key" value="{app_key}" />
+
+<h3>Je {site_name} status</h3>
+<p>Andere {site_name}'s zien je status op je {site_name} Home en in het hotel.</p>
+
+<p><label>Motto:
+<input type="text" name="motto" size="32" maxlength="32" value="{motto}" id="avatarmotto" /></label></p>
+
+<h3>Vriendenverzoeken</h3>
+<p><label><input type="checkbox" name="friendRequestsAllowed" value="1" {friend-allow}/>
+Vriendenverzoeken toestaan?</label></p>
+
+<h3>Online status</h3>
+<p>Wie mag zien of je online bent:<br />
+<label><input type="radio" name="showOnlineStatus" value="0" {online-nobody}/>Iedereen</label>
+<label><input type="radio" name="showOnlineStatus" value="1" {online-everybody}/>Niemand</label></p>
+
+<h3>Ruilinstellingen</h3>
+<p>Mogen {site_name}'s met jou ruilen:<br />
+<input type="radio" id="enableTradingOption" name="tradingsetting" value="1" {sel_enabled}>Aanzetten</input>
+<input type="radio" id="disableTradingOption" name="tradingsetting" value="0" {sel_disable}>Uitzetten</input></p>
+
+<h3>Volgfunctie - mogen je vrienden je vinden?</h3>
+<p>Kies wie je kan volgen in de kamers van {full_name}:<br />
+<label><input type="radio" name="followFriendMode" value="0" {follow-nobody}/>Mijn vrienden</label>
+<label><input type="radio" name="followFriendMode" value="1" {follow-friends}/>Niemand</label></p>
+
+<div class="settings-buttons">
+<a href="#" class="new-button" style="display: none" id="profileForm-submit"><b>Opslaan</b><i></i></a>
+<noscript><input type="submit" value="Opslaan" name="save" class="submit" /></noscript>
+</div>
+
+</form>
+
+<script type="text/javascript">
+$("profileForm-submit").observe("click", function(e) { e.stop(); $("profileForm").submit(); });
+$("profileForm-submit").show();
+</script>
+
+</div>
+</div>
+</div>

@@ -1,0 +1,89 @@
+/**
+ * Project Resource
+ * Housekeeping CSS File
+ *
+ * Copyright (C) 2013 Nick Monsma
+ * http://www.gnu.org/licenses/lgpl.html
+ */
+
+@import url('base.min.css');
+@import url('bootstrap.min.css');
+@import url('font-awesome.min.css');
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
+
+body {
+	margin: 0;
+	color: #AAAAAA;
+	font-size: 13px;
+	font-weight: 300;
+	font-family: 'Open Sans', Arial;
+	background: url('../img/background.png');
+}
+
+.container {
+	margin: auto;
+	width: 1000px;
+}
+
+.top {
+	text-align: center;
+	padding: 10px;
+	margin-top: -30px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;	
+	border: 1px solid #CCCCCC;
+	box-shadow: 0 5px 5px -5px rgba(0,0,0,.3);
+	-moz-box-shadow: 0 5px 5px -5px rgba(0,0,0,.3);
+	-webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,.3);	
+	background: url('../img/pattern/pattern8.png') #459AE9;
+}
+
+.top > span {
+	color: #FFFFFF;
+	font-size: 18px;
+	font-weight: 600;
+	text-shadow: 0 1px 0 #000000;
+}
+
+.wrapper {
+	padding: 10px;
+	margin-top: 50px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;	
+	border: 1px solid #CCCCCC;
+	background: url('../img/pattern/pattern4.png');
+}
+
+.column1 {
+	float: left;
+	width: 300px;
+	margin-right: 10px;
+}
+
+.column2 {
+	float: left;
+	width: 665px;
+}
+
+.content  {
+	padding: 10px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;	
+	border: 1px solid #CCCCCC;
+	box-shadow: 0 5px 5px -5px rgba(0,0,0,.3);
+	-moz-box-shadow: 0 5px 5px -5px rgba(0,0,0,.3);
+	-webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,.3);
+}
+
+.column1 .content {
+	background: #EEEEEE;
+}
+
+.column2 .content {
+	background: #FFFFFF;
+}
